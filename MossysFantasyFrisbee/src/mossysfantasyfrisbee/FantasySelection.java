@@ -20,7 +20,7 @@ public class FantasySelection {
 
     public FantasySelection(int uid, CompetitionRules rules) {
         this.userID = uid;
-        selection = new ArrayList<Player>();
+        selection = new ArrayList<>();
         competitionRules = rules;
     }
 
@@ -29,6 +29,7 @@ public class FantasySelection {
         if (errorString == null) {//if the error string is empty
             //player selection is valid, add to selection
             selection.add(player);
+            System.out.println("adding player");
         }
 
         return errorString; // we return either a message explaining why it can't be added or null (meaning it has been added)
@@ -49,24 +50,25 @@ public class FantasySelection {
             }
             teamList.add(p.getTeam());
         }
-
-        if (selection.size() == competitionRules.getTeamSize()) {
+        System.out.println("Selection: "+ selection.size()+" rules say "+ competitionRules.getTeamSize());
+        if (selection.size() >= competitionRules.getTeamSize()) {
             playerValid = false;
+            errorString="Maximum amount of players selected";
         }
 
         if (competitionRules.getMixedRule() != MixedRule.OPEN) {
             //TODO check genders
 
             if (competitionRules.getMixedRule() == MixedRule.MIXED && playerValid) {
-                if (player.getGender() == Gender.Female && femaleCount == (competitionRules.getTeamSize() / 2) + 1) {
+                if (player.getGender() == Gender.FEMALE && femaleCount == (competitionRules.getTeamSize() / 2) + 1) {
                     playerValid = false;
                     errorString = "Maximum amount of females for mixed reached";
-                } else if ((player.getGender() == Gender.MALE || player.getGender() = Gender.Unspecified) && maleCount == (competitionRules.getTeamSize() / 2) + 1) {
+                } else if ((player.getGender() == Gender.MALE || player.getGender() == Gender.UNKNOWN) && maleCount == (competitionRules.getTeamSize() / 2) + 1) {
                     playerValid = false;
                     errorString = "Maximum amount of non-females for mixed reached";
                 }
             } else if (competitionRules.getMixedRule() == MixedRule.LOOSE_MIXED) {
-                if ((player.getGender() == Gender.Male || player.getGender() == Gender.Unspecified) && maleCount == competitionRules.getTeamSize() - 1) {
+                if ((player.getGender() == Gender.MALE || player.getGender() == Gender.UNKNOWN) && maleCount == competitionRules.getTeamSize() - 1) {
                     playerValid = false;
                     errorString = "Maximum amount of non-females for loose mixed reached";
                 } else if (player.getGender() == Gender.FEMALE && femaleCount == competitionRules.getTeamSize() - 1) {
@@ -88,7 +90,7 @@ public class FantasySelection {
         return errorString;
     }
     
-    public ArrayList getSelection(){
+    public ArrayList<Player> getSelection(){
         return selection;
     }
 }
