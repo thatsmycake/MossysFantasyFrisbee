@@ -10,12 +10,12 @@ package mossysfantasyfrisbee;
  * @author Andy
  */
 public class Player {
-    public String name; //set to public, but perhaps should be private?
-    public String team;
-    public Gender gender;
-    public String shirtNum;
-    public int assists;
-    public int scores;
+    private String name;
+    private Team team;
+    private Gender gender;
+    private String shirtNum;
+    private int assists;
+    private int scores;
     
     public Player(String inputtedName){
         name = inputtedName;
@@ -39,7 +39,7 @@ public class Player {
      * 
      * @return the team name
      */
-    public String getTeam() {
+    public Team getTeam() {
         return team;
     }
     
@@ -47,7 +47,7 @@ public class Player {
      * 
      * @param t the team name to set
      */
-    public void setTeam(String t) {
+    public void setTeam(Team t) {
         this.team = t;        
     }
     
