@@ -39,7 +39,7 @@ public class FantasySelection {
         boolean playerValid = true;
         int maleCount = 0;
         int femaleCount = 0;
-        ArrayList<Team> teamList = new ArrayList<Team>();
+        ArrayList<Team> teamList = new ArrayList<>();
         String errorString = null;
 
         for (Player p : selection) {
