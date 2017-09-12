@@ -5,6 +5,8 @@
  */
 package mossysfantasyfrisbee;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Rowan
@@ -12,6 +14,8 @@ package mossysfantasyfrisbee;
 public class Team {
     private String teamName;
     private int teamID;
+    private ArrayList<Player> squadList; //think this is where I've gone wrong
+    //To produce a stored player list - this may be done with mySQL at some point but just to practice!
     public Team(String teamName){
         this.teamName = teamName;
     }
@@ -42,5 +46,17 @@ public class Team {
      */
     public void setTeamID(int teamID) {
         this.teamID = teamID;
+    }
+    
+    /**
+     * 
+     * @return the array of players in a squad (for scoring)
+     */
+    public ArrayList getSquadList() {
+        return squadList;
+    }
+    
+    public void setSquadList(ArrayList squadList){
+        this.squadList = squadList;
     }
 }

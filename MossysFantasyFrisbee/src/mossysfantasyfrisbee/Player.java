@@ -9,7 +9,7 @@ package mossysfantasyfrisbee;
  *
  * @author Andy
  */
-public class Player {
+public class Player implements Cloneable {
     private String name;
     private Team team;
     private Gender gender;
